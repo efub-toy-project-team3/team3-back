@@ -3,7 +3,7 @@ name: Deploy to Amazon EC2
 on:
   push:
     branches:
-      - main
+      - develop
 
 
 env:
@@ -11,6 +11,7 @@ env:
   S3_BUCKET_NAME: efubtoy-github-actions-s3-bucket
   CODE_DEPLOY_APPLICATION_NAME: efubtoy-codedeploy-app
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: efubtoy-codedeploy-deployment-group
+  APPLICATION: ${{ secrets.APPLICATION }}
 
 permissions:
   contents: read

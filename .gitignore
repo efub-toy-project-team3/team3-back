@@ -1,3 +1,5 @@
+src/main/resources/*.yml
+src/test/resources/application-prod.yml
 HELP.md
 .gradle
 build/
