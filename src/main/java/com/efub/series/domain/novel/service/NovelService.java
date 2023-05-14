@@ -18,4 +18,9 @@ public class NovelService {
     public List<Content> findTop5ByType(String type){
         return novelRepository.findTop5ByType(type);
     }
+
+    @Transactional(readOnly = true)
+    public List<Content> findTop5ByTypeAndFreeType(String type, String freeType){
+        return novelRepository.findTop5ByTypeAndFreeType(type, freeType);
+    }
 }
