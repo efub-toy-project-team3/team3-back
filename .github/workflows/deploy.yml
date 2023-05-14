@@ -43,7 +43,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: application.yml
-        path: ./team3-back/src/main/resources/application.yml
+        path: ./src/main/resources/application.yml
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
