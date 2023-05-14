@@ -1,4 +1,4 @@
-package com.efub.series.domain.novel.domain;
+package com.efub.series.domain.content.domain;
 
 import com.efub.series.global.common.BaseTimeEntity;
 import lombok.AccessLevel;

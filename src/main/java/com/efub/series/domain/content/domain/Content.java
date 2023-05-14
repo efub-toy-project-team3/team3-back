@@ -1,6 +1,5 @@
-package com.efub.series.domain.comic.domain;
+package com.efub.series.domain.content.domain;
 
-import com.efub.series.domain.comic.domain.Page;
 import com.efub.series.global.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;

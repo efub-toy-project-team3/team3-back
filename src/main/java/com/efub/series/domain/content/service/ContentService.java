@@ -1,7 +1,7 @@
-package com.efub.series.domain.novel.service;
+package com.efub.series.domain.content.service;
 
-import com.efub.series.domain.novel.domain.Content;
-import com.efub.series.domain.novel.repository.NovelRepository;
+import com.efub.series.domain.content.domain.Content;
+import com.efub.series.domain.content.repository.ContentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,16 +11,17 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class NovelService {
-    private final NovelRepository novelRepository;
+public class ContentService {
+    private final ContentRepository contentRepository;
 
     @Transactional(readOnly = true)
     public List<Content> findTop5ByType(String type){
-        return novelRepository.findTop5ByType(type);
+
+        return contentRepository.findTop5ByType(type);
     }
 
     @Transactional(readOnly = true)
     public List<Content> findTop5ByTypeAndFreeType(String type, String freeType){
-        return novelRepository.findTop5ByTypeAndFreeType(type, freeType);
+        return contentRepository.findTop5ByTypeAndFreeType(type, freeType);
     }
 }

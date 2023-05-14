@@ -1,6 +1,6 @@
-package com.efub.series.domain.novel.dto;
+package com.efub.series.domain.content.dto;
 
-import com.efub.series.domain.novel.domain.Content;
+import com.efub.series.domain.content.domain.Content;
 import lombok.*;
 
 import java.util.List;
@@ -33,3 +33,4 @@ public class NovelListResDto {
                 .build();
     }
 }
+

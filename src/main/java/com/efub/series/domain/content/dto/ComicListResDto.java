@@ -1,6 +1,6 @@
-package com.efub.series.domain.comic.dto;
+package com.efub.series.domain.content.dto;
 
-import com.efub.series.domain.comic.domain.Content;
+import com.efub.series.domain.content.domain.Content;
 import lombok.*;
 
 import java.util.List;
