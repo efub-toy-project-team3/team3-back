@@ -38,8 +38,8 @@ jobs:
         arguments: clean build -x test
     
     - uses: actions/checkout@v2
-    - run: touch ./team3-back/src/main/resources/application.yml
-    - run: echo "${{env.APPLICATION}}" > ./team3-back/src/main/resources/application.yml
+    - run: touch ./src/main/resources/application.yml
+    - run: echo "${{env.APPLICATION}}" > ./src/main/resources/application.yml
     - uses: actions/upload-artifact@v2
       with:
         name: application.yml
