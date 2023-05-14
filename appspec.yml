@@ -5,7 +5,7 @@ files:
   - source:  /
     destination: /home/ubuntu/team3-back
     overwrite: yes
-
+file_exixts_behavior: OVERWRITE
 permissions:
   - object: /
     pattern: "**"
