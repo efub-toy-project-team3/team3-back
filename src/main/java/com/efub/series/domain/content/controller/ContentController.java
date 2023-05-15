@@ -2,10 +2,13 @@ package com.efub.series.domain.content.controller;
 
 
 import com.efub.series.domain.content.domain.Content;
+import com.efub.series.domain.content.domain.ContentHashtag;
+import com.efub.series.domain.content.domain.Hashtag;
 import com.efub.series.domain.content.dto.ContentDetailResDto;
 import com.efub.series.domain.content.dto.ContentReqDto;
 import com.efub.series.domain.content.repository.ContentRepository;
 import com.efub.series.domain.content.service.ContentService;
+import com.efub.series.domain.content.dto.HashtagListResDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,11 +29,18 @@ public class ContentController {
 	@GetMapping("/{contentId}/details")
 	@ResponseStatus(value = HttpStatus.OK)
 	public ContentDetailResDto getDetail(@PathVariable final Long contentId){
-		Content content = contentService.findById(contentId);
+		Content content = contentService.get(contentId);
 		List<Content> otherWorkList = contentService.findAllByAuthor(content.getWriter());
 		List<Content> viewedWorkList = new ArrayList<>();
 		return new ContentDetailResDto(content, otherWorkList, viewedWorkList);
 
+	}
+
+	@GetMapping("/{contentId}/hashtags")
+	@ResponseStatus(value = HttpStatus.OK)
+	public HashtagListResDto getHashtagList(@PathVariable final Long contentId){
+		List<ContentHashtag> hashtags = contentService.getContentHashtags(contentId);
+		return HashtagListResDto.of(hashtags);
 	}
 
 	@PostMapping
