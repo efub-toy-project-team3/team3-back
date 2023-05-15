@@ -25,11 +25,11 @@ public class EpisodeListResDto {
 		private Boolean isFree;
 
 		public EpisodeResDto(Page page) {
-			this.pageId = pageId;
-			this.episodeNumber = episodeNumber;
-			this.title = title;
-			this.date = date;
-			this.isFree = isFree;
+			this.pageId = page.getPageId();
+			this.episodeNumber = page.getEpisodeNumber();
+			this.title = page.getTitle();
+			this.date = page.getDate();
+			this.isFree = page.getIsFree();
 		}
 
 		public static EpisodeResDto of(Page page)
