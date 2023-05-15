@@ -19,7 +19,18 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class ContentService {
-	private final ContentRepository contentRepository;
+  
+  private final ContentRepository contentRepository;
+
+  @Transactional(readOnly = true)
+  public List<Content> findTop5ByType(String type){
+      return contentRepository.findTop5ByType(type);
+  }
+
+  @Transactional(readOnly = true)
+  public List<Content> findTop5ByTypeAndFreeType(String type, String freeType){
+      return contentRepository.findTop5ByTypeAndFreeType(type, freeType);
+  }
 
 	public void create(ContentReqDto contentReqDto){
 		contentRepository.save(contentReqDto.toEntity());
@@ -30,12 +41,10 @@ public class ContentService {
 		return content;
 	}
 
-
 	@Transactional(readOnly = true)
 	public Content findById(Long contentId){
 		return contentRepository.findById(contentId)
 				.orElseThrow(EntityNotFoundException::new);
-
 	}
 
 	@Transactional(readOnly = true)

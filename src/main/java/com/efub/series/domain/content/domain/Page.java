@@ -27,12 +27,12 @@ public class Page extends BaseTimeEntity {
 	private Boolean isFree;
 
 	private LocalDate date;
+  
 	private Float size;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "content_id", updatable = false)
 	private Content content;
-
 
 	@Builder
 	public Page(Boolean isFree, LocalDate date, Float size) {

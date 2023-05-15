@@ -41,7 +41,6 @@ public class Content extends BaseTimeEntity {
 	@OneToMany(mappedBy = "hashtag", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ContentHashtag> contentHashtags = new ArrayList<>();
 
-
 	@Builder
 	public Content(String type, String genre, String title, Long grade, Long comments, Boolean isComplete, String writer, String shortDescription, String longDescription, String freeType, Long episodeCount, String image, Long downloadCount) {
 		this.type = type;
