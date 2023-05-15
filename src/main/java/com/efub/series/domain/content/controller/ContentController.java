@@ -27,7 +27,7 @@ public class ContentController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public ContentDetailResDto getDetail(@PathVariable final Long contentId){
 		Content content = contentService.findById(contentId);
-		List<Content> otherWorkList = contentService.findAllByAuthor(content.getWriter());
+		List<Content> otherWorkList = contentService.findAllByWriter(content.getWriter());
 		List<Content> viewedWorkList = new ArrayList<>();
 		return new ContentDetailResDto(content, otherWorkList, viewedWorkList);
 

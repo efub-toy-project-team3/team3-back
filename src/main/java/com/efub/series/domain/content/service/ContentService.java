@@ -29,7 +29,7 @@ public class ContentService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Content> findAllByAuthor(String author){
-		return contentRepository.findAllByAuthor(author);
+	public List<Content> findAllByWriter(String author){
+		return contentRepository.findAllByWriter(author);
 	}
 }
