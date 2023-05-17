@@ -30,4 +30,8 @@ public class ContentHashtag extends BaseTimeEntity {
 		this.content = content;
 		this.hashtag = hashtag;
 	}
+
+	public void setContent(Content content){
+		this.content = content;
+	}
 }

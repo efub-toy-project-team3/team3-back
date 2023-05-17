@@ -58,4 +58,9 @@ public class Content extends BaseTimeEntity {
 		this.downloadCount = downloadCount;
 	}
 
+	public void updateHashtag(ContentHashtag contentHashtag){
+		this.contentHashtags.add(contentHashtag);
+		contentHashtag.setContent(this);
+	}
+
 }
