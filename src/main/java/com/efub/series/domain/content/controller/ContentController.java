@@ -4,11 +4,9 @@ package com.efub.series.domain.content.controller;
 import com.efub.series.domain.content.domain.Content;
 import com.efub.series.domain.content.domain.ContentHashtag;
 import com.efub.series.domain.content.domain.Hashtag;
-import com.efub.series.domain.content.dto.ContentDetailResDto;
-import com.efub.series.domain.content.dto.ContentReqDto;
+import com.efub.series.domain.content.dto.*;
 import com.efub.series.domain.content.repository.ContentRepository;
 import com.efub.series.domain.content.service.ContentService;
-import com.efub.series.domain.content.dto.HashtagListResDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -43,12 +41,22 @@ public class ContentController {
 		return HashtagListResDto.of(hashtags);
 	}
 
+	@PostMapping("/{contentId}/hashtags")
+	@ResponseStatus(value = HttpStatus.OK)
+	public HashtagListResDto.HashtagResDto createHashtag(@PathVariable final Long contentId, @RequestBody final HashtagReqDto hashtagReqDto){
+		Long contentHashtagId = contentService.createHashtag(contentId, hashtagReqDto);
+		ContentHashtag hashtag = contentService.findByContentHashtagId(contentHashtagId);
+		return HashtagListResDto.HashtagResDto.of(hashtag);
+	}
+
+
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)//TEST 용으로
-	public String createContent(@RequestBody final ContentReqDto contentReqDto)
+	public ContentResDto createContent(@RequestBody final ContentReqDto contentReqDto)
 	{
-		contentService.create(contentReqDto);
-		return "성공";
+		Long contentId = contentService.create(contentReqDto);
+		Content content = contentService.findById(contentId);
+		return new ContentResDto(content);
 	}
 
 }
