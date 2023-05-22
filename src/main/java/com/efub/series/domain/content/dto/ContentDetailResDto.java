@@ -1,6 +1,7 @@
 package com.efub.series.domain.content.dto;
 
 import com.efub.series.domain.content.domain.Content;
+import com.efub.series.domain.content.domain.ContentHashtag;
 import com.efub.series.domain.content.domain.Page;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -60,10 +61,11 @@ public class ContentDetailResDto {
 	private EpisodeListResDto episodes;
 	private WorkListResDto otherWorks;
 	private WorkListResDto viewedWorks;
+	private HashtagListResDto hashtags;
 	private String shortNotice;
 	private String longNotice;
 
-	public ContentDetailResDto(Content content, List<Content> otherWorkList, List<Content> viewedWorkList){
+	public ContentDetailResDto(Content content, List<Content> otherWorkList, List<Content> viewedWorkList, List<ContentHashtag> hashtagList){
 		genre = content.getGenre();
 		title = content.getTitle();
 		rating = content.getGrade();
@@ -78,6 +80,7 @@ public class ContentDetailResDto {
 		episodes = EpisodeListResDto.of(content.getPageList());
 		otherWorks = WorkListResDto.of(otherWorkList);
 		viewedWorks = WorkListResDto.of(viewedWorkList);
+		hashtags = HashtagListResDto.of(hashtagList);
 		shortNotice = content.getNotices().get(content.getNotices().size() -1).getTitle();
 		longNotice = content.getNotices().get(content.getNotices().size() -1).getNoticeBody();
 
