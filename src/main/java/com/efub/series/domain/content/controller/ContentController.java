@@ -29,7 +29,7 @@ public class ContentController {
 	public ContentDetailResDto getDetail(@PathVariable final Long contentId){
 		Content content = contentService.get(contentId);
 		List<Content> otherWorkList = contentService.findAllByAuthor(content.getWriter());
-		List<Content> viewedWorkList = new ArrayList<>();
+		List<Content> viewedWorkList = contentService.getViewedWorkList(); // TODO : 로그인 기능 추가 시 수정 필요
 		return new ContentDetailResDto(content, otherWorkList, viewedWorkList);
 
 	}

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -96,6 +97,17 @@ public class ContentService {
 	public ContentHashtag findByContentHashtagId(Long contentHashtagId){
 	  return contentHashtagRepository.findById(contentHashtagId)
 			  .orElseThrow(EntityNotFoundException::new);
+	}
+	public List<Content> getViewedWorkList(){
+	  List<Content> viewedWorkList = new ArrayList<>();
+	  List<Long> listNum = new ArrayList<>();
+	  listNum.add(1L);
+	  listNum.add(2L);
+	  listNum.add(3L);
+	  for(Long id : listNum){
+		  viewedWorkList.add(findById(id));
+		}
+	  return viewedWorkList;
 	}
 
 
