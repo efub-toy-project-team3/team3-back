@@ -60,6 +60,7 @@ public class ContentDetailResDto {
 	private EpisodeListResDto episodes;
 	private WorkListResDto otherWorks;
 	private WorkListResDto viewedWorks;
+	private String recentNotice;
 
 	public ContentDetailResDto(Content content, List<Content> otherWorkList, List<Content> viewedWorkList){
 		genre = content.getGenre();
@@ -76,6 +77,7 @@ public class ContentDetailResDto {
 		episodes = EpisodeListResDto.of(content.getPageList());
 		otherWorks = WorkListResDto.of(otherWorkList);
 		viewedWorks = WorkListResDto.of(viewedWorkList);
+		recentNotice = content.getNotices().get(content.getNotices().size() -1).getTitle();
 
 	}
 
