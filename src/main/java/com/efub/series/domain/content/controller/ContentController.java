@@ -28,7 +28,8 @@ public class ContentController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public ContentDetailResDto getDetail(@PathVariable final Long contentId){
 		Content content = contentService.get(contentId);
-		List<Content> otherWorkList = contentService.findAllByAuthor(content.getWriter());
+		//List<Content> otherWorkList = contentService.findAllByAuthor(content.getWriter()); //TODO : 작품 데이터가 5개 이상이면 다시 변경
+		List<Content> otherWorkList = contentService.getOtherWorkList();
 		List<Content> viewedWorkList = contentService.getViewedWorkList(); // TODO : 로그인 기능 추가 시 수정 필요
 		return new ContentDetailResDto(content, otherWorkList, viewedWorkList);
 

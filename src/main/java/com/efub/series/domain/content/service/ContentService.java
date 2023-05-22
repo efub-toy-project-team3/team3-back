@@ -98,12 +98,28 @@ public class ContentService {
 	  return contentHashtagRepository.findById(contentHashtagId)
 			  .orElseThrow(EntityNotFoundException::new);
 	}
+	public List<Content> getOtherWorkList(){
+		List<Content> otherWorkList = new ArrayList<>();
+		List<Long> listNum = new ArrayList<>();
+		listNum.add(7L);
+		listNum.add(6L);
+		listNum.add(5L);
+		listNum.add(4L);
+		listNum.add(3L);
+		for(Long id : listNum){
+			otherWorkList.add(findById(id));
+		}
+		return otherWorkList;
+	}
+
 	public List<Content> getViewedWorkList(){
 	  List<Content> viewedWorkList = new ArrayList<>();
 	  List<Long> listNum = new ArrayList<>();
 	  listNum.add(1L);
 	  listNum.add(2L);
 	  listNum.add(3L);
+	  listNum.add(4L);
+	  listNum.add(5L);
 	  for(Long id : listNum){
 		  viewedWorkList.add(findById(id));
 		}
