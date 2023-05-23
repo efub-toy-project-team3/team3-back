@@ -3,9 +3,7 @@ package com.efub.series.domain.content.dto;
 import com.efub.series.domain.content.domain.Content;
 import com.efub.series.domain.content.domain.ContentHashtag;
 import com.efub.series.domain.content.domain.Page;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,45 +42,56 @@ import java.util.stream.Collectors;
  */
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ContentDetailResDto {
-
-	private String genre;
-	private String title;
-	private Long rating;
-	private Long commentCount;
-	private Boolean completed;
-	private String author;
-	private String shortDescription;
-	private String longDescription;
-	private Long totalEpisodes;
-	private String imageUrl;
-	private Long downloadCount;
+	private ContentResDto contentDetail;
 	private EpisodeListResDto episodes;
 	private WorkListResDto otherWorks;
 	private WorkListResDto viewedWorks;
 	private HashtagListResDto hashtags;
-	private String shortNotice;
-	private String longNotice;
+
+	@Getter
+	public static class ContentResDto {
+		private String genre;
+		private String title;
+		private Long rating;
+		private Long commentCount;
+		private Boolean completed;
+		private String author;
+		private String shortDescription;
+		private String longDescription;
+		private Long totalEpisodes;
+		private String imageUrl;
+		private Long downloadCount;
+
+		private String shortNotice;
+		private String longNotice;
+		public ContentResDto(Content content){
+			genre = content.getGenre();
+			title = content.getTitle();
+			rating = content.getGrade();
+			commentCount = content.getComments();
+			completed = content.getIsComplete();
+			author = content.getWriter();
+			shortDescription = content.getShortDescription();
+			longDescription = content.getLongDescription();
+			totalEpisodes = content.getEpisodeCount();
+			imageUrl = content.getImage();
+			downloadCount = content.getDownloadCount();
+			shortNotice = content.getNotices().get(content.getNotices().size() -1).getTitle();
+			longNotice = content.getNotices().get(content.getNotices().size() -1).getNoticeBody();
+		}
+	}
+
+
 
 	public ContentDetailResDto(Content content, List<Content> otherWorkList, List<Content> viewedWorkList, List<ContentHashtag> hashtagList){
-		genre = content.getGenre();
-		title = content.getTitle();
-		rating = content.getGrade();
-		commentCount = content.getComments();
-		completed = content.getIsComplete();
-		author = content.getWriter();
-		shortDescription = content.getShortDescription();
-		longDescription = content.getLongDescription();
-		totalEpisodes = content.getEpisodeCount();
-		imageUrl = content.getImage();
-		downloadCount = content.getDownloadCount();
+		contentDetail = new ContentResDto(content);
 		episodes = EpisodeListResDto.of(content.getPageList());
 		otherWorks = WorkListResDto.of(otherWorkList);
 		viewedWorks = WorkListResDto.of(viewedWorkList);
 		hashtags = HashtagListResDto.of(hashtagList);
-		shortNotice = content.getNotices().get(content.getNotices().size() -1).getTitle();
-		longNotice = content.getNotices().get(content.getNotices().size() -1).getNoticeBody();
 
 	}
 

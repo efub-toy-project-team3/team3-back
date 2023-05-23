@@ -17,10 +17,12 @@ public class WorkListResDto {
 	public static class WorkResDto{
 		private String genre;
 		private String title;
+		private String image;
 		private Long downloadCount;
 		public WorkResDto(Content content) {
 			this.genre = content.getGenre();
 			this.title = content.getTitle();
+			this.image = content.getImage();
 			this.downloadCount = content.getDownloadCount();
 		}
 
